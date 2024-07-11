@@ -1,6 +1,6 @@
 "use client";
 import { searchIcon } from "@/assets/icons/global";
-import { setDataFromCookie } from "@/helpers/cookie";
+import { getDataFromCookie, setDataFromCookie } from "@/helpers/cookie";
 import useProductStore from "@/store/products";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -10,6 +10,7 @@ const GlobalSearch = () => {
   const [search, setSearch] = useState("");
   const [data, setData] = useState<any[]>([]);
   const { searchProducts } = useProductStore();
+  const token = getDataFromCookie("access_token");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -58,7 +59,7 @@ const GlobalSearch = () => {
       {search.length > 0 && (
         <div className="absolute w-full p-5 top-12 z-50 shadow-lg rounded-md bg-white">
           <ul className="grid gap-0 lg:gap-2">
-            {data.length > 0 ? (
+            {data?.length > 0 ? (
               data.map((item: any, index: number) => (
                 <li
                   key={index}

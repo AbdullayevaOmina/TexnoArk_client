@@ -221,7 +221,8 @@ const Header = () => {
         </button>
       </header>
       <Drawer placement="right" onClose={closeDrawer} visible={drawerVisible}>
-        <ul className="flex flex-col gap-5">
+        <GlobalSearch />
+        <ul className="flex flex-col gap-5 mt-5">
           {navs.map((item, i) => (
             <li key={i}>
               <Link href={item.path} onClick={closeDrawer}>
